@@ -3,4 +3,4 @@
 1 packet of headache pills: 9.75
 1 imported box of chocolates: 11.80
 Sales Taxes: 6.65
-Total: 74.68
+Total: 74.63
