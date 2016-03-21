@@ -67,7 +67,7 @@ public class Items implements Serializable
 	
 	public double getTaxValue()
 	{
-		return NumericUtils.roundTo05( value * ( taxRate + importDutyRate ) );
+		return NumericUtils.roundTo05( value * ( taxRate + (isImported() ? importDutyRate : 0) ) );
 	}
 	
 	public double getTaxedValue()

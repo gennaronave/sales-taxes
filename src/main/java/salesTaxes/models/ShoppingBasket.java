@@ -43,7 +43,10 @@ public class ShoppingBasket implements Serializable
 		return tot;
 	}
 
-	public String getReceipt()
+	/**
+	 * @return The receipt for all the items in the basket
+	 */
+	public String receipt()
 	{
 		StringBuffer sb = new StringBuffer();
 		
@@ -62,6 +65,6 @@ public class ShoppingBasket implements Serializable
 	@Override
 	public String toString()
 	{
-		return getReceipt();
+		return receipt();
 	}
 }

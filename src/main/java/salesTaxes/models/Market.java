@@ -21,7 +21,7 @@ public class Market
 	private static final String	VALUE_PREFIX	= "at ";
 
 	/**
-	 * Buil a Market object with configured tax and duty rates and "no basic sales tax" goods list
+	 * Build a Market object with configured tax and duty rates and "no basic sales tax" goods list
 	 * @param confIs Input stream for the configuration properties file
 	 * @throws IOException
 	 * @throws ParseException
@@ -47,18 +47,22 @@ public class Market
 	}
 
 	/**
-	 * Fill the provided ShoppingBasket with the items read from the stream 
-	 * @param basket The receipt to fill in
+	 * Create and fill a ShoppingBasket with the items read from the stream 
 	 * @param is The stream providing the items
+	 * @return The filled ShoppingBasket
 	 * @throws IOException
 	 */
-	public void fill( ShoppingBasket basket, InputStream is ) throws IOException
+	public ShoppingBasket fillShoppingBasket( InputStream is ) throws IOException
 	{
+		ShoppingBasket basket = new ShoppingBasket();
+		
 		LineIterator li = IOUtils.lineIterator( is, "UTF-8" );
 		while( li.hasNext() )
 		{
 			basket.add( parseLine( li.nextLine().trim() ) );
 		}
+		
+		return basket;
 	}
 
 	/**
@@ -80,8 +84,8 @@ public class Market
 		String description = line.substring( line.indexOf( " " ), line.lastIndexOf( VALUE_PREFIX ) ).trim();
 		
 		boolean imported = description.toUpperCase().indexOf( IMPORTED_PREFIX ) > -1;
+		items.setImportDutyRate( importDutyRate );
 		items.setImported( imported );
-		items.setImportDutyRate( imported ? importDutyRate : 0 );
 		if( imported )
 		{
 			description = description.replaceFirst( "(?i)" + IMPORTED_PREFIX, "" ).replaceAll( "( )+", " " );
