@@ -33,7 +33,7 @@ public class ReceiptTest
 		InputStream is = this.getClass().getClassLoader().getResourceAsStream( String.format( "input%d.txt", index ) );
 		ShoppingBasket basket = market.fillShoppingBasket( is );
 		is.close();
-		System.out.println( "Output 3" );
+		System.out.println( String.format( "Output %d", index ) );
 		System.out.println( basket );
 		assertEquals( String.format( "Failed \"input%d.txt\" test", index ), 
 				FileUtils.readFileToString( new File( this.getClass().getClassLoader().getResource( String.format( "output%d.txt", index ) ).getFile() ) ),
