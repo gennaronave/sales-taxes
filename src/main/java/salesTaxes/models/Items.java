@@ -80,5 +80,4 @@ public class Items implements Serializable
 	{
 		return String.format( Locale.US, "%d %s%s: %.2f", getQuantity(), isImported() ? "imported " : "",getDescription(), getTaxedValue() );
 	}
-
 }
